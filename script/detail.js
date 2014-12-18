@@ -126,9 +126,7 @@ var TemplateEngine = function(html, options) {
 ======================
 */
 // 1 - Society
-var Society = function(metadata){
-	this.metadata = metadata;
-	this.template = 
+var templateSociety = 
 		'<div class="infopanel-half-hz">'+
 			'<div class="header">'+
 				'<div class="exit-button"></div>'+
@@ -143,11 +141,12 @@ var Society = function(metadata){
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
 				'<div class="infopanel-twothird-hz" id="info-">'+
+					//langue nombre : radar
 					'<canvas id="radar-languages"></canvas>'+
 				'</div>'+
 				'<div class="infopanel-third-hz">'+
 					'<ul>'+
-						'<%for(var index in this.places) {%>'+ 
+						'<%for(var index in this.lieux) {%>'+ 
 				    		'<li><%this.places[index]%></li>'+
 				    	'<%}%>'+
 			   		'</ul>'+
@@ -158,11 +157,9 @@ var Society = function(metadata){
 				'<canvas id="bar-inhabitants"></canvas>'+
 			'</div>'+
 		'</div>';
-}
 
-Society.prototype.init = function(){
-	var self = this;
-	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
+function insertSociety(metadata){
+	document.querySelector(".infopanel").innerHTML = TemplateEngine(templateSociety, metadata);
 
 	var ctx,
 		newChart;
@@ -171,52 +168,50 @@ Society.prototype.init = function(){
 	chart = new Chart(ctx).Radar(radarLanguages());
 	//#pie-species pie chart for number of inhabiting species
 	ctx = document.getElementById("pie-species").getContext("2d");
-	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
+	chart = new Chart(ctx).Pie(pieSpecies(metadata.name));	
 	// //#bar-inhabitants radar chart for number of inhabitants
 	ctx = document.getElementById("bar-inhabitants").getContext("2d");
 	chart = new Chart(ctx).Bar(barInhabitants);
+
+	//chart = new Chart(ctx).Radial([120,0,40,59]);
 }
 
 
 // 2 - Planet's data
-
-var Insights = function(metadata){
-	this.metadata = metadata;
-	this.template = 
+var templateInsights = 
 		'<div class="infopanel-third-hz">'+
-		'<div class="header">'+
-			'<div class="exit-button"></div>'+
-			'<h1><%this.name%></h1>'+
-		'</div>'+
-		'<div class="text">'+
-			'<%this.geography%>'+
-			'</br>'+
-			'<h3><%this.capital%></h3>'+
-		'</div>'+
-	'</div>'+
-	'<div class="infopanel-twothird-hz">'+
-		'<div class="infopanel-half-vt">'+
-			'<div class="infopanel-half-hz" id="info-">'+
-				'<canvas id="radar-satellites"></canvas>'+
+			'<div class="header">'+
+				'<div class="exit-button"></div>'+
+				'<h1><%this.name%></h1>'+
 			'</div>'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="bars-surface"></canvas>'+
+			'<div class="text">'+
+				'<%this.geography%>'+
+				'</br>'+
+				'<h3><%this.capital%></h3>'+
 			'</div>'+
 		'</div>'+
-		'<div class="infopanel-half-vt">'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="polar-distance"></canvas>'+
+		'<div class="infopanel-twothird-hz">'+
+			'<div class="infopanel-half-vt">'+
+				'<div class="infopanel-half-hz" id="info-">'+
+					//langue nombre : radar
+					'<canvas id="radar-satellites"></canvas>'+
+				'</div>'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="bars-surface"></canvas>'+
+				'</div>'+
 			'</div>'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="polar-diameter"></canvas>'+
-			'</div>'+			
-		'</div>'+
-	'</div>';
-}
+			'<div class="infopanel-half-vt">'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="polar-distance"></canvas>'+
+				'</div>'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="polar-diameter"></canvas>'+
+				'</div>'+			
+			'</div>'+
+		'</div>';
 
-Insights.prototype.init = function(){
-	var self = this;
-	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
+function insertInsight(metadata){
+	document.querySelector(".infopanel").innerHTML = TemplateEngine(templateInsights, metadata);
 	var ctx,
 		newChart,
 		data;
@@ -228,13 +223,13 @@ Insights.prototype.init = function(){
 	chart = new Chart(ctx).Bar(barsSurface);
 	//'<canvas id="polar-distance"></canvas>'+
 	ctx = document.getElementById("polar-distance").getContext("2d");
-	chart = new Chart(ctx).PolarArea(polarDistance(self.metadata.name));
+	chart = new Chart(ctx).PolarArea(metadata.name);
 	//'<canvas id="polar-diameter"></canvas>'+
 	ctx = document.getElementById("polar-diameter").getContext("2d");
-	chart = new Chart(ctx).PolarArea(polarDiameter(self.metadata.name));
+	chart = new Chart(ctx).PolarArea(metadata.name);
+
 }
 
-<<<<<<< HEAD
 
 
 var templateHome = 
@@ -249,16 +244,6 @@ var templateHome =
 					'</div>' +
 				'</div>' +
 	
-=======
-var Home = function(metadata){
-	this.metadata = metadata;
-	this.template = 
-	'<div class="name">'+
-			'<p><%this.name%></p>'+
-		'</div>'+
-		'<div class="infopanel-half-hz">'+
-			'<div class="infopanel-half-vt" id="society">'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
 						'<div class="slideshow-control-prev">←</div>'+
@@ -266,81 +251,45 @@ var Home = function(metadata){
 					'</div>'+
 					'<div class="slide current">'+
 							'<div class="slide-inner">'+
-<<<<<<< HEAD
 								'<canvas id="chart-area"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 1</h2></div>'+
-=======
-								'<canvas id="bar-inhabitants"></canvas>'+
-								'<div class="slide-title">'+
-									'<h2>Titre 1</h2>'+
-								'</div>'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 							'</div>'+
 					'</div>'+
 					'<div class="slide">'+
 							'<div class="slide-inner">'+
-<<<<<<< HEAD
 								'<canvas id="chart-areb"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 2</h2></div>'+
-=======
-								'<canvas id="pie-species"></canvas>'+
-								'<div class="slide-title">'+
-									'<h2>Titre 2</h2>'+
-								'</div>'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 							'</div>'+
 					'</div>'+
 				'</div>'+
 			'</div>'+
-<<<<<<< HEAD
 			'<div class="infopanel-half-vt">'+
 								'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
 						'<a href="#" class="button floating danger ripple">+</a>' +
 					'</div>' +
 				'</div>' +
-=======
-			'<div class="infopanel-half-vt" id="insights">'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
 						'<div class="slideshow-control-prev">←</div>'+
 						'<div class="slideshow-control-next">→</div>'+
-<<<<<<< HEAD
 					'</div>.'+
 					'<div class="slide current">'+
 							'<div class="slide-inner">'+
 								'<canvas id="chart-areaa"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 3</h2></div>'+
-=======
-					'</div>'+
-					'<div class="slide current">'+
-							'<div class="slide-inner">'+
-								'<canvas id="polar-distance"></canvas>'+
-								'<div class="slide-title">'+
-									'<h2>Titre 3</h2>'+
-								'</div>'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 							'</div>'+
 					'</div>'+
 					'<div class="slide">'+
 							'<div class="slide-inner">'+
-<<<<<<< HEAD
 								'<canvas id="chart-arebb"></canvas>'+
 								'<div class="slide-title"> <h2>Titre </h2></div>'+
-=======
-								'<canvas id="polar-diameter"></canvas>'+
-								'<div class="slide-title">'+
-									'<h2>Titre </h2>'+
-								'</div>'+
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 							'</div>'+
 					'</div>'+
 				'</div>'+
 			'</div>'+
 		'</div>'+
 		'<div class="infopanel-half-hz">'+
-<<<<<<< HEAD
 			'<div class="infopanel-half-tt"> '+
 								'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
@@ -380,47 +329,25 @@ $.fn.materialripple = function(options) {
 $(function(){
 	$('.ripple').materialripple();
 	});
-=======
-			'<div class="infopanel-half-tt">'+
-				'<h1>Histoire</h1>'+
-				'<p><%this.history%></p>'+
-			'</div>'+
-		'</div>';
-}
 
-Home.prototype.init = function(){
-	var self = this;
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
-
-	// insert template in DOM
-	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
+function insertHome(metadata){
+	document.querySelector(".infopanel").innerHTML = TemplateEngine(templateHome, metadata);
 	var ctx,
 		newChart,
 		data;
+	//'<canvas id="radar-satellites"></canvas>'+
+	// 	'<canvas id="chart-area"></canvas>'+
+	//
+	// 	'<canvas id="chart-areb"></canvas>'+
 
-	//draw charts
-	ctx = document.getElementById("pie-species").getContext("2d");
-	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
+	// 	'<canvas id="chart-areaa"></canvas>'+
 
-	ctx = document.getElementById("bar-inhabitants").getContext("2d");
-	chart = new Chart(ctx).Bar(barInhabitants);
+	// 	'<canvas id="chart-arebb"></canvas>'+
 
-	ctx = document.getElementById("polar-distance").getContext("2d");
-	chart = new Chart(ctx).PolarArea(polarDistance(self.metadata.name));
-
-	ctx = document.getElementById("polar-diameter").getContext("2d");
-	chart = new Chart(ctx).PolarArea(polarDiameter(self.metadata.name));
-
-	//setup slideshows
-	var mSlide = new MatSlide;
-	mSlide.init();
 }
 
-<<<<<<< HEAD
 
 init();
-=======
->>>>>>> b55e199e362ec39448ce5806834888180b34b6b1
 
 
 
@@ -432,12 +359,16 @@ function init(){
 	for (var i = 0; i < planetsMetadata.length; i++){
 		if ( planetsMetadata[i].name == planete) { metadata = planetsMetadata[i] }
 	}
-	
-	var home = new Home(metadata);
-	home.init();
+
+	insertHome(metadata);
+
+	var mSlide = new MatSlide;
+	mSlide.init();
 }
 
-init();
+
+
+
 
 
 
