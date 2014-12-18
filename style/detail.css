@@ -4,23 +4,27 @@ body {background:#eee;font-size:14px;font-family:Helvetica,Arial;width: 100%;hei
 box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 */
 
-.infopanel, .infopanel-half-vt, .infopanel-half-tt, .infopanel-third-hz, .infopanel-third-vt, .infopanel-square{
+.infopanel, .infopanel-half-vt, .infopanel-half-tt, .infopanel-third-vt, .infopanel-square{
 	box-shadow: 0px 3px 3px 1px rgba(203, 204, 205, 1);
 	overflow: hidden;
 }
 
 .infopanel{/*background-color: #F4F5F6*/; width: 50%; height: 100%; float: right;}
 .name{width: 100%; height: 10%; background-color: #1EAAF1;}
-.infopanel-half-hz{/*background-color: #F4F5F6;*/ width: 100%;height: 50%;float: left;}
+.infopanel-half-hz{width: 100%;height: 50%;float: left;}
+.infopanel-third-hz-society{margin-top: 2%;}
 .infopanel-half-tt{background-color: #FFF; width: 94%;height: 70%; margin: auto; margin-top: 0px;}
 .infopanel-half-vt{background-color: #FFF;width: 45%;height: 86%; float:left;}
-.infopanel-third-hz{background-color: #ff0; height: 33%;width: 100%; float: left;}
-.infopanel-third-vt{background-color: #cff; height: 100%;width: 33%;float: left;}
-.infopanel-twothird-hz{background-color: #cff; height: 66%;width: 100%;	float: left;}
+.infopanel-third-hz{height: 33%;width: 100%; float: left;}
+.infopanel-third-vt{/*background-color: #cff;*/ height: 100%;width: 33%;float: left;}
+.infopanel-twothird-hz{height: 66%;width: 100%;	float: left;}
 .infopanel-square{background-color: #fff;width: 50%;height: 50%;}
-
-.infopanel canvas {width: 100% !important; height: auto !important; margin-top: 30%; margin-bottom: 30%;}
-
+.place{margin-top: 6%;}
+.infopanel canvas {width: 100% !important; height: auto !important; /*margin-top: 30%; margin-bottom: 30%;*/}
+#bar-inhabitants{width: 49% !important; margin-left: 25.5%;margin-right: 25.5%;}
+.text-society{padding: 30px;}
+.name .exit-button{position: relative; font-size: 20px;float:left;top: 20px; left: 15px; color: #fff;}
+.name .exit-button:hover{cursor: pointer;}
 #canvas-holder{width:70%;}
 
 .infopanel-half-vt{margin-top: 2%; margin-left: 3.6%;}
@@ -32,9 +36,11 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .slideshow-control-prev{float: left;font-size: 2em;}
 .slideshow-control-next{float: right;font-size: 2em;}
 
+/*.societe{ height: 55% !important;}*/
 .name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 22px; color: #FFF; padding-top: 3.4%; letter-spacing: 6px; text-transform: uppercase;}
 
-.infopanel h1{text-align: center; font-size: 16px; margin-top: 10px;font-family: Century Gothic; font-weight: initial; margin-bottom: 10px; color: #FF5722}
+.text-society span{font-weight: initial;}
+.infopanel h1{text-align: center; text-transform:uppercase; font-size: 16px; margin-top: 10px;font-family: Century Gothic; font-weight: initial; margin-bottom: 10px; color: #FF5722}
 .infopanel-half-tt p{ width: 80%;margin:auto; font-size: 12px; text-align:justify;margin-top: 5%; font-family: Century Gothic; font-weight: initial; margin-bottom: 10px;}
 .slide{
 	display: inline;
