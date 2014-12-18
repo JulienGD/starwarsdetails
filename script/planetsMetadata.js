@@ -341,7 +341,6 @@ function getDataFromCategory(category, labels){
 			}
 		}
 	}
-	// debugger;
 	return result;
 }
 
@@ -477,7 +476,6 @@ var polarDistance = function(planet){
 			dataset[i].highlight = "hsl("+30*i+", 85%, 81%)";	
 		}
 	}
-	debugger;
 	return dataset;
 }
 
