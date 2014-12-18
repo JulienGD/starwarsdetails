@@ -164,17 +164,23 @@ Society.prototype.init = function(){
 	var self = this;
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
 
-	var ctx,
-		newChart;
-	//#radar-language radar chart for number of languauges
-	ctx = document.getElementById("radar-languages").getContext("2d");
-	chart = new Chart(ctx).Radar(radarLanguages());
-	//#pie-species pie chart for number of inhabiting species
-	ctx = document.getElementById("pie-species").getContext("2d");
-	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
-	// //#bar-inhabitants radar chart for number of inhabitants
-	ctx = document.getElementById("bar-inhabitants").getContext("2d");
-	chart = new Chart(ctx).Bar(barInhabitants);
+	// $(".infopanel div").css({
+	// 	opacity : 0
+	// });
+
+	$(".infopanel div").fadeIn("fast", function(){
+		var ctx,
+			newChart;
+		//#radar-language radar chart for number of languauges
+		ctx = document.getElementById("radar-languages").getContext("2d");
+		chart = new Chart(ctx).Radar(radarLanguages());
+		//#pie-species pie chart for number of inhabiting species
+		ctx = document.getElementById("pie-species").getContext("2d");
+		chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
+		// //#bar-inhabitants radar chart for number of inhabitants
+		ctx = document.getElementById("bar-inhabitants").getContext("2d");
+		chart = new Chart(ctx).Bar(barInhabitants);
+	})
 }
 
 // 2 - Planet's data
@@ -313,14 +319,14 @@ Home.prototype.init = function(){
 		data;
 
 	//set up event listeners for buttons
-	document.getElementById("button-society").addEventListener('click', function(){
-		var society = new Society(self.metadata);
-		society.init();
-	});
-	document.getElementById("button-insights").addEventListener('click', function(){
-		var insights = new Insights(self.metadata);
-		insights.init();
-	});
+	// document.getElementById("button-society").addEventListener('click', function(){
+	// 	var society = new Society(self.metadata);
+	// 	society.init();
+	// });
+	// document.getElementById("button-insights").addEventListener('click', function(){
+	// 	var insights = new Insights(self.metadata);
+	// 	insights.init();
+	// });
 	//document.getElementById("button-movies")
 	//draw charts
 	ctx = document.getElementById("pie-species").getContext("2d");
@@ -345,7 +351,6 @@ $.fn.materialripple = function(options) {
 		rippleClass: 'ripple-wrapper'
 	}
 	$.extend(defaults, options);
-
 	$(this).append('<span class="'+defaults.rippleClass+'"></span>');
 	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
 
@@ -361,9 +366,17 @@ $.fn.materialripple = function(options) {
 		var rippleX = e.clientX - $(this).offset().left - d/2;
 		var rippleY = e.clientY - $(this).offset().top - d/2;
 
-		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
-
-
+		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
+			$(this).unbind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
+			$('.floating-wrapper').addClass('animated').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
+				setTimeout(function(){
+					$('.infopanel div').fadeOut("slow", function(){
+						var society = new Society(self.metadata);
+						society.init();
+					})
+			}, 650);
+			})
+		});
 	});
 }
 
@@ -408,6 +421,51 @@ function init(){
 }
 
 init();
+
+
+/*
+	transition :
+		créer une div au même endroit
+		lui appliquer la classe
+			setTimeout
+				repeat
+*/
+
+// function materialTransition(el){
+// 	var self = el;
+// 	var buttonTemplate = 
+// 					'<div class="floating-wrapper-plus" id="growing-button">'+
+// 						'<div class="floating-wrapper">'+
+// 							'<a href="javascript:void(0)" class="button floating danger ripple" id="button-movies">+</a>' +
+// 						'</div>' +
+// 					'</div>';
+
+// 	document.querySelector(".infopanel").innerHTML += TemplateEngine(buttonTemplate);
+// 	var button = document.getElementById("growing-button");
+// 	button.style.position = "absolute";
+// 	button.style.left = self.offsetLeft;
+// 	button.style.top = self.offsetTop;
+// 	button.style.zIndex = 30;
+// 	button.style.transition= "all 1s ease-in-out";
+// 	button.style.transform= "scale(100)";
+// 	debugger;
+// 	setTimeout(function(){
+// 		document.querySelector(".infopanel").innerHTML += TemplateEngine(buttonTemplate);
+// 		var button = document.getElementById("growing-button");
+// 		button.style.position = "absolute";
+// 		button.firstChild.firstChild.backgroundColor = "#fff";
+// 		button.style.left = self.offsetLeft;
+// 		button.style.top = self.offsetTop;
+// 		button.style.zIndex = 30;
+// 		button.style.transition= "all .2s ease-in-out";
+// 		button.style.transform= "scale(100)";
+// 	}, 250);
+// 	setTimeout(function(){
+// 		var society = new Society(self.metadata);
+// 		society.init();
+// 	}, 500);
+// 	console.log(el);
+// }
 
 
 
