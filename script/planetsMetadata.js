@@ -39,7 +39,7 @@ var planetsMetadata =
 			name : "Tatooine",
 			capital : "Bestine",
 			abstract : "Tattoine (prononcé /tætu'in/; Jawaese: Tah doo Een e) était un monde désertique et la première plan!te de l'histoire du système binaire de Tatoo. Elle faisait partie du secteur Arkanis des Territoires Éloignés, habitée par de pauvres autochtones qui faisaient principalement pousser des moisissures pour survivre.",
-			history : "Tatooine fut d'abrod colonisée vers 4200 BBY. Son no provient du nom Jawa pour la planète : Tah-doo-Een-e. le planète fût plus tar représentée au Sénat Galactique par Sidrona Diath mais aussi abandonnée par la République une seconde fois. Durant la Grande Chasse, la planète fur nétoyée des terentatek par les Jedi.",
+			history : "C'était ici que le Maître Jedi Qui Gon Jin reconnu le potentiel d'Anakin Skywalker à devenir un Jedi, et qu'il l'introduit à Obi-Wan Kenobi, son futur maître et mentor. Tatooine fût aussi le foyer du fils d'Anakin, Luke, qui y vécut jusqu'à devenir un jeune adulte.",
 			geography : "Tatooine est supposée être une des plus vieilles planètes de l'espace connu, composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. Des traces fossiles suggèrent la présence de larges océans à la surface de Tatooine, qui séchés laissèrent derrière eux de nombreuses formations géologiques pré-arides, notaament le Canyon du Mendiant, formé aux alentours de 2 000 000 BBY, alors que Tatooine était lush.",
 			society : "The inhabitants of Tatooine included many different species from many parts of the galaxy, as can be seen in the multiple bars and cantinas in the cities. Most creatures on the planet loved to gamble on nearly everything, especially podracing, though the sport declined after the rise of the Empire",
 			government : ""
@@ -48,41 +48,41 @@ var planetsMetadata =
 		name : "Korriban",
 		capital : "Dresdahe",
 		abstract : "Coruscant, (prononcé /'kɔɹəsɑnt/), originellement appelée Notron, aussi connue comme le Centre Impérial ou la Reine du Noyau, était une planète située au Coeur de la Galaxie. Il était généralement accordé que Coruscant était, durant la majorité de l'histoire galactique, le monde le plus important de la galaxie. À diverses époques, il s'agissait de la capitale de la République Galactique, de l'Empire Galactique, de la Nouvelle République, de l'empire Yuuzhan Vong, de l'Alliance Galactique, brièvement de l'Empire Fel, de l'Empire Galactique de Dark Krayt, et de la Fédération Galactique du Triumvirate. En contrôlant Coruscant, ces gouvernemens contrôlaient la plupart de la galaxie.",
-			geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
-			history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
-			society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
-			government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
-	
+		geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
+		history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
+		society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
+		government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
+
 	},
 	{
 		name : "Kamino",
 		capital : "Tipoca",
 		abstract : "Coruscant, (prononcé /'kɔɹəsɑnt/), originellement appelée Notron, aussi connue comme le Centre Impérial ou la Reine du Noyau, était une planète située au Coeur de la Galaxie. Il était généralement accordé que Coruscant était, durant la majorité de l'histoire galactique, le monde le plus important de la galaxie. À diverses époques, il s'agissait de la capitale de la République Galactique, de l'Empire Galactique, de la Nouvelle République, de l'empire Yuuzhan Vong, de l'Alliance Galactique, brièvement de l'Empire Fel, de l'Empire Galactique de Dark Krayt, et de la Fédération Galactique du Triumvirate. En contrôlant Coruscant, ces gouvernemens contrôlaient la plupart de la galaxie.",
-			geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
-			history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
-			society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
-			government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
-	
+		geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
+		history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
+		society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
+		government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
+
 	},
 	{
 		name : "Dagobah",
 		capital : "",
 		abstract : "Coruscant, (prononcé /'kɔɹəsɑnt/), originellement appelée Notron, aussi connue comme le Centre Impérial ou la Reine du Noyau, était une planète située au Coeur de la Galaxie. Il était généralement accordé que Coruscant était, durant la majorité de l'histoire galactique, le monde le plus important de la galaxie. À diverses époques, il s'agissait de la capitale de la République Galactique, de l'Empire Galactique, de la Nouvelle République, de l'empire Yuuzhan Vong, de l'Alliance Galactique, brièvement de l'Empire Fel, de l'Empire Galactique de Dark Krayt, et de la Fédération Galactique du Triumvirate. En contrôlant Coruscant, ces gouvernemens contrôlaient la plupart de la galaxie.",
-			geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
-			history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
-			society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
-			government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
-	
+		geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
+		history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
+		society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
+		government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
+
 	},
 	{
 		name : "Mustafar",
 		capital : "Fralideja",
 		abstract : "Coruscant, (prononcé /'kɔɹəsɑnt/), originellement appelée Notron, aussi connue comme le Centre Impérial ou la Reine du Noyau, était une planète située au Coeur de la Galaxie. Il était généralement accordé que Coruscant était, durant la majorité de l'histoire galactique, le monde le plus important de la galaxie. À diverses époques, il s'agissait de la capitale de la République Galactique, de l'Empire Galactique, de la Nouvelle République, de l'empire Yuuzhan Vong, de l'Alliance Galactique, brièvement de l'Empire Fel, de l'Empire Galactique de Dark Krayt, et de la Fédération Galactique du Triumvirate. En contrôlant Coruscant, ces gouvernemens contrôlaient la plupart de la galaxie.",
-			geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
-			history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
-			society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
-			government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
-	
+		geography : " Géologiquement, la planète était composée d'un cœur fondu, entouré d'un manteau de roches et de silicate. À ses pôles se tenainet d'énormes blocs de glace populaire au près des touristes. L'entière surface de Coruscant était couverte de, gonflée par une population de plus de cent milliards à plusieurs trillions, selon l'époque. Après la fin de la Guerre des Clones, une note officielle nota 1 trilliard de résidents permanents officiels. Les statistiques n'incluaient pas les gens de passage, les travailleurs temporaires, la population non recensée, ou encore les habitants des infrastructures orbitales. À cause de ces omissions, la population réelle de Coruscant étaient estimée le triple de la note officielle.",
+		history : "L'Histoire enregistrée de Coruscant remonte à si loin qu'elle est devenue indistinguable de la légende...",
+		society : "Coruscant était le foyer d'une certaine variété d'espèces, bien que les Humaisn en représenatient la majorité. La plupart des espèces natives de la planète étaient soit exteintes soit regroupée dans les parties les plus profondes du Monde Souterrain depuis l'époque de l'Ancienne République. La planète était supposée être le foyer des Humains. Même si tous les citoyens renommés n'éaient nés à Coruscant, beaucoup considéraient cette planète comme leur patrie.",
+		government : "La planet résistait aux changements de bords politiques, procurant une stabilité à travers les rebellions, la longue chute de la corrompue Ancienne République, et l'époustouflant introduction du Nouvel Ordre de l'Empereur."
+
 	}
 ]
 
@@ -414,37 +414,12 @@ var pieSpecies = function(planet){
 	return dataset;
 }
 
-// function pieSpeciesCreator(index){
-// 	var data = [];
-// 	var hue = 0;
-// 	for (var i =0; i < planetsMetadata[index].society.population.length; i++){
-// 		hue += 33;
-// 		if (hue > 360) hue = hue%360;
-
-// 		data[i] = {};
-// 		data[i].value = planetsMetadata[index].society.population[i][1];
-// 		data[i].color = 'hsl( '+hue+', 85%, 61%)';
-// 		data[i].highlight = 'hsl( '+hue+', 85%, 81%)';
-// 		data[i].label = planetsMetadata[index].society.population[i][0];
-// 	}
-// 	return data;
-// }
-
 /*
 ===================================
 		INSIGHTS
 ===================================
 */
-/*
-polar data structure
-var data = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-*/
+
 var radarSatellites = {
     labels: getLabels(),
     datasets: [
