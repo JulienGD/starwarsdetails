@@ -22,6 +22,7 @@ MatSlide.prototype.init = function(){
 	for(var i=0;i<prevArrows.length;i++){
 		prevArrows[i].addEventListener('click',this.prevSlide,false);
 	}
+	debugger;
 }
 /*
 	listener next
@@ -42,9 +43,8 @@ MatSlide.prototype.nextSlide = function(){
 			}
 		}
 	}
-
-	if ( currSlide.nextSibling.nextSibling){
-		nextSlide = currSlide.nextSibling.nextSibling;
+	if ( currSlide.nextSibling){
+		nextSlide = currSlide.nextSibling;
 		currSlide.className = "slide";
 		nextSlide.className += " current shadow";	
 		nextSlide.style.left = 0;
@@ -73,9 +73,8 @@ MatSlide.prototype.prevSlide = function(){
 			}
 		}
 	}
-
-	if ( currSlide.previousSibling.previousSibling.previousSibling.previousSibling){
-		prevSlide = currSlide.previousSibling.previousSibling;
+	if ( currSlide.previousSibling.previousSibling){
+		prevSlide = currSlide.previousSibling;
 		currSlide.className = "slide shadow";
 		currSlide.style.left = "200%"
 		setTimeout(function(){
