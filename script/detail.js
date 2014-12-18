@@ -243,7 +243,7 @@ var Home = function(metadata){
 			'<div class="infopanel-half-vt">'+
 				'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
-						'<a href="#" class="button floating danger ripple">+</a>' +
+						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-society">+</a>' +
 					'</div>' +
 				'</div>' +
 	
@@ -269,7 +269,7 @@ var Home = function(metadata){
 			'<div class="infopanel-half-vt">'+
 								'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
-						'<a href="#" class="button floating danger ripple">+</a>' +
+						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-insights">+</a>' +
 					'</div>' +
 				'</div>' +
 				'<div class="slideshow">'+
@@ -296,7 +296,7 @@ var Home = function(metadata){
 			'<div class="infopanel-half-tt"> '+
 				'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
-						'<a href="#" class="button floating danger ripple">+</a>' +
+						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-movies">+</a>' +
 					'</div>' +
 				'</div>' +
 				'<h1>Histoire</h1>'+
@@ -314,6 +314,16 @@ Home.prototype.init = function(){
 		newChart,
 		data;
 
+	//set up event listeners for buttons
+	document.getElementById("button-society").addEventListener('click', function(){
+		var society = new Society(self.metadata);
+		society.init();
+	});
+	document.getElementById("button-insights").addEventListener('click', function(){
+		var insights = new Insights(self.metadata);
+		insights.init();
+	});
+	//document.getElementById("button-movies")
 	//draw charts
 	ctx = document.getElementById("pie-species").getContext("2d");
 	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
@@ -363,6 +373,26 @@ $(function(){
 	$('.ripple').materialripple();
 	});
 
+function initThreeJs(){
+
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth/2, window.innerHeight );
+	document.getElementById("container").appendChild( renderer.domElement );
+
+	camera.position.z = 5;
+
+	function render() {
+		requestAnimationFrame( render );
+		cube.rotation.x += 0.01;
+		cube.rotation.y += 0.01;
+		renderer.render( scene, camera );
+	}
+	render();
+}
+
 function init(){
 	var url = document.URL,
 		planete = url.slice(url.indexOf("&")+1, url.length),
@@ -374,6 +404,9 @@ function init(){
 	
 	var home = new Home(metadata);
 	home.init();
+	
+
+	//initThreeJs();
 }
 
 init();
