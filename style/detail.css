@@ -9,7 +9,7 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 	overflow: hidden;
 }
 
-.infopanel{/*background-color: #F4F5F6*/; width: 50%; height: 100%; float: right; margin-top: -5px;}
+.infopanel{/*background-color: #F4F5F6*/; width: 50%; height: 100%; float: right;}
 .name{width: 100%; height: 10%; background-color: #1EAAF1;}
 .infopanel-half-hz{/*background-color: #F4F5F6;*/ width: 100%;height: 50%;float: left;}
 .infopanel-half-tt{background-color: #FFF; width: 94%;height: 70%; margin: auto; margin-top: 0px;}
@@ -32,7 +32,7 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .slideshow-control-prev{float: left;font-size: 2em;}
 .slideshow-control-next{float: right;font-size: 2em;}
 
-.name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 20px; color: #FFF; margin-top: 5px; text-transform: uppercase;}
+.name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 22px; color: #FFF; padding-top: 20px; text-transform: uppercase;}
 
 .slide{
 	display: inline;
