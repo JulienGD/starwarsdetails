@@ -32,7 +32,7 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .slideshow-control-prev{float: left;font-size: 2em;}
 .slideshow-control-next{float: right;font-size: 2em;}
 
-.name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 22px; color: #FFF; padding-top: 3.5%; letter-spacing: 6px; text-transform: uppercase;}
+.name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 22px; color: #FFF; padding-top: 3.4%; letter-spacing: 6px; text-transform: uppercase;}
 
 .slide{
 	display: inline;
