@@ -249,44 +249,42 @@ var Home = function(metadata){
 	
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
-						'<div class="slideshow-control-prev">←</div>'+
-						'<div class="slideshow-control-next">→</div>'+
+						'<div class="slideshow-control-prev">&#10094;</div>'+
+						'<div class="slideshow-control-next">&#10095;</div>'+
 					'</div>'+
 					'<div class="slide current">'+
+						'<h1>Société</h1>'+
 							'<div class="slide-inner">'+
 								'<canvas id="pie-species"></canvas>'+
-								'<div class="slide-title"> <h2>Titre 1</h2></div>'+
 							'</div>'+
 					'</div>'+
 					'<div class="slide">'+
 							'<div class="slide-inner">'+
 								'<canvas id="bar-inhabitants"></canvas>'+
-								'<div class="slide-title"> <h2>Titre 2</h2></div>'+
 							'</div>'+
 					'</div>'+
 				'</div>'+
 			'</div>'+
 			'<div class="infopanel-half-vt">'+
-								'<div class="floating-wrapper-plus">'+
+				'<div class="floating-wrapper-plus">'+
 					'<div class="floating-wrapper">'+
 						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-insights">+</a>' +
 					'</div>' +
 				'</div>' +
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
-						'<div class="slideshow-control-prev">←</div>'+
-						'<div class="slideshow-control-next">→</div>'+
+						'<div class="slideshow-control-prev">&#10094;</div>'+
+						'<div class="slideshow-control-next">&#10095;</div>'+
 					'</div>.'+
 					'<div class="slide current">'+
-							'<div class="slide-inner">'+
-								'<canvas id="polar-distance"></canvas>'+
-								'<div class="slide-title"> <h2>Titre 3</h2></div>'+
-							'</div>'+
+						'<h1>Physique</h1>'+
+						'<div class="slide-inner">'+
+							'<canvas id="polar-distance"></canvas>'+
+						'</div>'+
 					'</div>'+
 					'<div class="slide">'+
 							'<div class="slide-inner">'+
 								'<canvas id="polar-diameter"></canvas>'+
-								'<div class="slide-title"> <h2>Titre </h2></div>'+
 							'</div>'+
 					'</div>'+
 				'</div>'+
