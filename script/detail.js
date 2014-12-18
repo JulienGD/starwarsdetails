@@ -1,6 +1,9 @@
 /*
 	init slideshow listeners
 */
+
+
+
 var MatSlide = function(){
 };
 
@@ -22,7 +25,6 @@ MatSlide.prototype.init = function(){
 	for(var i=0;i<prevArrows.length;i++){
 		prevArrows[i].addEventListener('click',this.prevSlide,false);
 	}
-	debugger;
 }
 /*
 	listener next
@@ -174,6 +176,7 @@ function insertSociety(metadata){
 	//chart = new Chart(ctx).Radial([120,0,40,59]);
 }
 
+
 // 2 - Planet's data
 var templateInsights = 
 		'<div class="infopanel-third-hz">'+
@@ -227,12 +230,20 @@ function insertInsight(metadata){
 
 }
 
+
+
 var templateHome = 
 		'<div class="name">'+
 			'<p><%this.name%></p>'+
 		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
+				'<div class="floating-wrapper-plus">'+
+					'<div class="floating-wrapper">'+
+						'<a href="#" class="button floating danger ripple">+</a>' +
+					'</div>' +
+				'</div>' +
+	
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
 						'<div class="slideshow-control-prev">←</div>'+
@@ -253,6 +264,11 @@ var templateHome =
 				'</div>'+
 			'</div>'+
 			'<div class="infopanel-half-vt">'+
+								'<div class="floating-wrapper-plus">'+
+					'<div class="floating-wrapper">'+
+						'<a href="#" class="button floating danger ripple">+</a>' +
+					'</div>' +
+				'</div>' +
 				'<div class="slideshow">'+
 					'<div class="slideshow-controls">'+
 						'<div class="slideshow-control-prev">←</div>'+
@@ -275,8 +291,44 @@ var templateHome =
 		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-tt"> '+
-			'</div>';
+								'<div class="floating-wrapper-plus">'+
+					'<div class="floating-wrapper">'+
+						'<a href="#" class="button floating danger ripple">+</a>' +
+					'</div>' +
+				'</div>' +
+			'</div>'+
+		'</div>';
 
+$.fn.materialripple = function(options) {
+	var defaults = {
+		rippleClass: 'ripple-wrapper'
+	}
+	$.extend(defaults, options);
+
+	$(this).append('<span class="'+defaults.rippleClass+'"></span>');
+	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
+
+	$(this).bind('click', function(e){
+		$(this).find('.'+defaults.rippleClass).removeClass('animated');
+		var mouseX = e.clientX;
+		var mouseY = e.clientY;
+
+		elementWidth = $(this).outerWidth();
+		elementHeight = $(this).outerHeight();
+		d = Math.max(elementWidth, elementHeight);
+		$(this).find('.'+defaults.rippleClass).css({'width': d, 'height': d});
+		var rippleX = e.clientX - $(this).offset().left - d/2;
+		var rippleY = e.clientY - $(this).offset().top - d/2;
+
+		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
+
+
+	});
+}
+
+$(function(){
+	$('.ripple').materialripple();
+	});
 
 function insertHome(metadata){
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(templateHome, metadata);
@@ -294,7 +346,10 @@ function insertHome(metadata){
 
 }
 
+
 init();
+
+
 
 function init(){
 	var url = document.URL,
