@@ -239,15 +239,15 @@ var templateHome =
 						'<div class="slideshow-control-prev">←</div>'+
 						'<div class="slideshow-control-next">→</div>'+
 					'</div>'+
-					'<div class="slide current" id="naboo-society-1">'+
+					'<div class="slide current">'+
 							'<div class="slide-inner">'+
-								'<canvas id="chart-area" width="200" height="200"></canvas>'+
+								'<canvas id="chart-area"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 1</h2></div>'+
 							'</div>'+
 					'</div>'+
-					'<div class="slide" id="naboo-society-2">'+
+					'<div class="slide">'+
 							'<div class="slide-inner">'+
-								'<canvas id="chart-areb" width="200" height="200"></canvas>'+
+								'<canvas id="chart-areb"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 2</h2></div>'+
 							'</div>'+
 					'</div>'+
@@ -259,15 +259,15 @@ var templateHome =
 						'<div class="slideshow-control-prev">←</div>'+
 						'<div class="slideshow-control-next">→</div>'+
 					'</div>.'+
-					'<div class="slide current" id="naboo-society-1">'+
+					'<div class="slide current">'+
 							'<div class="slide-inner">'+
-								'<canvas id="chart-areaa" width="200" height="200"></canvas>'+
+								'<canvas id="chart-areaa"></canvas>'+
 								'<div class="slide-title"> <h2>Titre 3</h2></div>'+
 							'</div>'+
 					'</div>'+
-					'<div class="slide" id="naboo-society-2">'+
+					'<div class="slide">'+
 							'<div class="slide-inner">'+
-								'<canvas id="chart-arebb" width="200" height="200"></canvas>'+
+								'<canvas id="chart-arebb"></canvas>'+
 								'<div class="slide-title"> <h2>Titre </h2></div>'+
 							'</div>'+
 					'</div>'+
