@@ -129,20 +129,29 @@ var TemplateEngine = function(html, options) {
 var Society = function(metadata){
 	this.metadata = metadata;
 	this.template = 
-		'<div class="infopanel-half-hz">'+
+		'<div class="infopanel-third-hz">'+
 			'<div class="header">'+
-				'<div class="exit-button"></div>'+
-				'<h1>Société</h1>'+
+				'<div class="name">'+
+					'<div class="exit-button">&#9587;</div>'+
+					'<p>societe</p>'+
+					'</br>'+
+				'</div>'+
 			'</div>'+
-			'<div class="text">'+
-				'<%this.abstract%>'+
-				'</br>'+
-				'<h3><%this.capital%></h3>'+
+			'<div class="infopanel-third-hz-society">'+
+				'<div class="infopanel-half-tt"> '+
+					'<div class="text-society">'+
+						'<%this.abstract%>'+
+						'</br>'+
+						'<h3><span>La capitale est </span><%this.capital%></h3>'+
+					'</div>'+
+				'</div>'+
 			'</div>'+
 		'</div>'+
-		'<div class="infopanel-half-hz">'+
-			'<div class="infopanel-half-vt">'+
+
+		'<div class="infopanel-third-hz place">'+
+			'<div class="infopanel-half-vt societe">'+
 				'<div class="infopanel-twothird-hz" id="info-">'+
+					'<h1>Nombres de langages parlés</h1>' +
 					'<canvas id="radar-languages"></canvas>'+
 				'</div>'+
 				'<div class="infopanel-third-hz">'+
@@ -153,10 +162,16 @@ var Society = function(metadata){
 			   		'</ul>'+
 				'</div>'+
 			'</div>'+
-			'<div class="infopanel-half-vt">'+
+			'<div class="infopanel-half-vt societe">'+
+				'<h1>Répartition habitants</h1>' +
 				'<canvas id="pie-species"></canvas>'+
-				'<canvas id="bar-inhabitants"></canvas>'+
 			'</div>'+
+		'</div>'+
+		'<div class="infopanel-half-hz-society">'+
+			'<div class="infopanel-half-tt"> '+
+				'<h1>Répartition habitants</h1>' +
+				'<canvas id="bar-inhabitants"></canvas>'+
+			'</div>'+			
 		'</div>';
 }
 
@@ -167,8 +182,8 @@ Society.prototype.init = function(){
 	// $(".infopanel div").css({
 	// 	opacity : 0
 	// });
-	// debugger;
-	// $(".infopanel div").fadeIn("fast", function(){
+
+	$(".infopanel div").fadeIn("fast", function(){
 		var ctx,
 			newChart;
 		//#radar-language radar chart for number of languauges
@@ -180,7 +195,7 @@ Society.prototype.init = function(){
 		// //#bar-inhabitants radar chart for number of inhabitants
 		ctx = document.getElementById("bar-inhabitants").getContext("2d");
 		chart = new Chart(ctx).Bar(barInhabitants);
-	//})
+	})
 }
 
 // 2 - Planet's data
@@ -243,8 +258,8 @@ var Home = function(metadata){
 	this.metadata = metadata;
 	this.template = 
 	'<div class="name">'+
-			'<p><%this.name%></p>'+
-		'</div>'+
+		'<p><%this.name%></p>'+
+	'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
 				'<div class="floating-wrapper-plus" id="button-society">'+
@@ -399,7 +414,7 @@ function initThreeJs(){
 	render();
 }
 
-function getMetadata(){
+function init(){
 	var url = document.URL,
 		planete = url.slice(url.indexOf("&")+1, url.length),
 		metadata;
@@ -407,16 +422,11 @@ function getMetadata(){
 	for (var i = 0; i < planetsMetadata.length; i++){
 		if ( planetsMetadata[i].name == planete) { metadata = planetsMetadata[i] }
 	}
-
-	return metadata;
-}
-
-function init(){
 	
-	var metadata = getMetadata();
 	var home = new Home(metadata);
 	home.init();
 	
+
 	//initThreeJs();
 }
 
