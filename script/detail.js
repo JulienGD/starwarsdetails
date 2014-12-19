@@ -106,10 +106,6 @@ MatSlide.prototype.prevSlide = function(){
 		prevSlide.className += " current";	
 	}
 
-	//hide or show navigation arrow
-	if ( !currSlide.previousSibling.previousSibling || !prevSlide.previousSibling.previousSibling){
-		prevSlide.previousSibling.firstChild.style.display = "none";
-	}
 }
 
 /*
@@ -224,13 +220,13 @@ var Society = function(metadata){
 				'</div>'+
 			'</div>'+
 			'<div class="infopanel-half-vt societe">'+
-				'<h1>Répartition habitants</h1>' +
+				'<h1>Population</h1>' +
 				'<canvas id="pie-species"></canvas>'+
 			'</div>'+
 		'</div>'+
-		'<div class="infopanel-half-hz-society">'+
+		'<div class="infopanel-third-hz-society">'+
 			'<div class="infopanel-half-tt"> '+
-				'<h1>Répartition habitants</h1>' +
+				'<h1>Nombre d\'habitants</h1>' +
 				'<canvas id="bar-inhabitants"></canvas>'+
 			'</div>'+			
 		'</div>';
@@ -326,6 +322,79 @@ Insights.prototype.init = function(){
 	chart = new Chart(ctx).PolarArea(polarDiameter(self.metadata.name));
 }
 
+// 3 - Movies related data
+
+var Movies = function(metadata){
+	this.metadata = metadata;
+	this.template = 
+		'<div class="infopanel-third-hz">'+
+			'<div class="header">'+
+				'<div class="name">'+
+					'<div class="exit-button">&#9587;</div>'+
+					'<p>Behind The Scenes</p>'+
+					'</br>'+
+				'</div>'+
+			'</div>'+
+			'<div class="infopanel-third-hz-society">'+
+				'<div class="infopanel-half-tt"> '+
+					'<div class="text-society">'+
+						'<%this.behind%>'+
+						'</br>'+
+						'<h3></h3>'+
+					'</div>'+
+				'</div>'+
+			'</div>'+
+		'</div>'+
+		'<div class="infopanel-third-hz">'+
+			'<div class="infopanel-half-vt societe">'+
+				'<div class="infopanel-twothird-hz" id="info-">'+
+					'<h1>Nombres de langages parlés</h1>' +
+					'<canvas id="radar-languages"></canvas>'+
+				'</div>'+
+				'<div class="infopanel-third-hz">'+
+				'</div>'+
+			'</div>'+
+			'<div class="infopanel-half-vt">'+
+				'<h1>Épisodes</h1>' +
+					'<ul class="list-episodes">'+
+						'<li>1</li>'+
+						'<li>2</li>'+
+						'<li>3</li>'+
+						'<li>4</li>'+
+						'<li>5</li>'+
+						'<li>6</li>'+
+					'</ul>'+
+			'</div>'+
+		'</div>'+
+		'<div class="infopanel-third-hz-society">'+
+			'<div class="infopanel-half-tt"> '+
+				'<h1>Nombre d\'habitants</h1>' +
+				'<canvas id="bar-inhabitants"></canvas>'+
+			'</div>'+			
+		'</div>';
+}
+
+Movies.prototype.init = function(){
+	var self = this;
+	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
+	document.querySelector(".exit-button").addEventListener('click', function(){
+		$('.infopanel > div').fadeOut("normal");
+		setTimeout(function(){init()}, 600);
+	})
+
+	//color episodes
+	var episodes = getDataFromPlanet(self.metadata.name, "Films");
+	var ul = document.querySelector(".list-episodes");
+	for ( var i = 0; i < ul.length; i++){
+		for ( var j = 0; j < episodes.length; j++){
+			if ( parseInt(ul.childNodes[i].innerHTML()) == episodes[j] ){
+				ul.childNodes[i].setAttr("class", "episode-appearance")
+			}
+		}
+	}
+	debugger;
+}
+
 var Home = function(metadata){
 	this.metadata = metadata;
 	this.template = 
@@ -417,6 +486,12 @@ Home.prototype.init = function(){
 			var insights = new Insights(self.metadata);
 			insights.init();
 		}, 700);
+	});	
+	document.getElementById("button-movies").addEventListener('click', function(){
+		setTimeout(function(){
+			var movies = new Movies(self.metadata);
+			movies.init();
+		}, 700);
 	});
 	//document.getElementById("button-movies")
 	//draw charts
@@ -457,11 +532,8 @@ function initThreeJs(){
 	render();
 }
 
-//initialize 
-//load parameter "planet" from URL, and get linked data
-function init(){
+function getPlanetFromUrl(){
 	var url = document.URL;
-	console.log("\''\''")
 	//if no params : reload page with a Param (and I love Naboo)
 	if (url.indexOf('&') < 0){
 		window.location.href = "./detail.html?&Naboo";
@@ -473,11 +545,15 @@ function init(){
 	for (var i = 0; i < planetsMetadata.length; i++){
 		if ( planetsMetadata[i].name == planete) { metadata = planetsMetadata[i] }
 	}
-	
+	return metadata
+}
+
+//initialize 
+//load parameter "planet" from URL, and get linked data
+function init(){
+	var metadata = getPlanetFromUrl();
 	var home = new Home(metadata);
 	home.init();
-	
-	//initThreeJs();
 }
 
 init();
