@@ -129,29 +129,20 @@ var TemplateEngine = function(html, options) {
 var Society = function(metadata){
 	this.metadata = metadata;
 	this.template = 
-		'<div class="infopanel-third-hz">'+
+		'<div class="infopanel-half-hz">'+
 			'<div class="header">'+
-				'<div class="name">'+
-					'<div class="exit-button">&#9587;</div>'+
-					'<p>societe</p>'+
-					'</br>'+
-				'</div>'+
+				'<div class="exit-button"></div>'+
+				'<h1>Société</h1>'+
 			'</div>'+
-			'<div class="infopanel-third-hz-society">'+
-				'<div class="infopanel-half-tt"> '+
-					'<div class="text-society">'+
-						'<%this.abstract%>'+
-						'</br>'+
-						'<h3><span>La capitale est </span><%this.capital%></h3>'+
-					'</div>'+
-				'</div>'+
+			'<div class="text">'+
+				'<%this.abstract%>'+
+				'</br>'+
+				'<h3><%this.capital%></h3>'+
 			'</div>'+
 		'</div>'+
-
-		'<div class="infopanel-third-hz place">'+
-			'<div class="infopanel-half-vt societe">'+
+		'<div class="infopanel-half-hz">'+
+			'<div class="infopanel-half-vt">'+
 				'<div class="infopanel-twothird-hz" id="info-">'+
-					'<h1>Nombres de langages parlés</h1>' +
 					'<canvas id="radar-languages"></canvas>'+
 				'</div>'+
 				'<div class="infopanel-third-hz">'+
@@ -162,16 +153,10 @@ var Society = function(metadata){
 			   		'</ul>'+
 				'</div>'+
 			'</div>'+
-			'<div class="infopanel-half-vt societe">'+
-				'<h1>Répartition habitants</h1>' +
+			'<div class="infopanel-half-vt">'+
 				'<canvas id="pie-species"></canvas>'+
-			'</div>'+
-		'</div>'+
-		'<div class="infopanel-half-hz-society">'+
-			'<div class="infopanel-half-tt"> '+
-				'<h1>Répartition habitants</h1>' +
 				'<canvas id="bar-inhabitants"></canvas>'+
-			'</div>'+			
+			'</div>'+
 		'</div>';
 }
 
@@ -182,8 +167,8 @@ Society.prototype.init = function(){
 	// $(".infopanel div").css({
 	// 	opacity : 0
 	// });
-
-	$(".infopanel div").fadeIn("fast", function(){
+	// debugger;
+	// $(".infopanel div").fadeIn("fast", function(){
 		var ctx,
 			newChart;
 		//#radar-language radar chart for number of languauges
@@ -195,7 +180,7 @@ Society.prototype.init = function(){
 		// //#bar-inhabitants radar chart for number of inhabitants
 		ctx = document.getElementById("bar-inhabitants").getContext("2d");
 		chart = new Chart(ctx).Bar(barInhabitants);
-	})
+	//})
 }
 
 // 2 - Planet's data
@@ -258,8 +243,8 @@ var Home = function(metadata){
 	this.metadata = metadata;
 	this.template = 
 	'<div class="name">'+
-		'<p><%this.name%></p>'+
-	'</div>'+
+			'<p><%this.name%></p>'+
+		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
 				'<div class="floating-wrapper-plus">'+
@@ -370,6 +355,7 @@ $.fn.materialripple = function(options) {
 	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
 
 	$(this).bind('click', function(e){
+		debugger;
 		$(this).find('.'+defaults.rippleClass).removeClass('animated');
 		var mouseX = e.clientX;
 		var mouseY = e.clientY;
@@ -381,17 +367,16 @@ $.fn.materialripple = function(options) {
 		var rippleX = e.clientX - $(this).offset().left - d/2;
 		var rippleY = e.clientY - $(this).offset().top - d/2;
 
-		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
-			$(this).unbind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
-			$('.floating-wrapper').addClass('animated').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(){
-				setTimeout(function(){
-					$('.infopanel div').fadeOut("slow", function(){
-						var society = new Society(self.metadata);
-						society.init();
-					})
-			}, 650);
-			})
-		});
+		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
+		$('.floating-wrapper').addClass('animated');
+		setTimeout(function(){
+			$('.infopanel > div').fadeOut("fast", function(){});
+			var metadata = getMetadata();
+				var society = new Society(metadata);
+				society.init();
+		}, 650);
+			
+		
 	});
 }
 
@@ -419,7 +404,7 @@ function initThreeJs(){
 	render();
 }
 
-function init(){
+function getMetadata(){
 	var url = document.URL,
 		planete = url.slice(url.indexOf("&")+1, url.length),
 		metadata;
@@ -427,11 +412,16 @@ function init(){
 	for (var i = 0; i < planetsMetadata.length; i++){
 		if ( planetsMetadata[i].name == planete) { metadata = planetsMetadata[i] }
 	}
+
+	return metadata;
+}
+
+function init(){
 	
+	var metadata = getMetadata();
 	var home = new Home(metadata);
 	home.init();
 	
-
 	//initThreeJs();
 }
 
