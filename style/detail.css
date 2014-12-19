@@ -20,7 +20,7 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .infopanel-twothird-hz{height: 66%;width: 100%;	float: left;}
 .infopanel-square{background-color: #fff;width: 50%;height: 50%;}
 .place{margin-top: 6%;}
-.infopanel canvas {width: 100% !important; height: auto !important; /*margin-top: 30%; margin-bottom: 30%;*/}
+.infopanel canvas {width: 100% !important; height: auto !important; position: relative;}
 #bar-inhabitants{width: 49% !important; margin-left: 25.5%;margin-right: 25.5%;}
 .text-society{padding: 30px;}
 .name .exit-button{position: relative; font-size: 20px;float:right;top: 20px; margin-right: 3.6%; color: #fff;transition:transform 0.66s ease-out;}
@@ -33,8 +33,8 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .slideshow {position: relative; width: 100%; height: 100%;}
 .slideshow div:nth-of-type(2){left: 0;}
 .slideshow-controls{position: absolute; top: 45%; width: 96%; margin-left: 2%; z-index: 100; color: #448AFF;}
-.slideshow-control-prev{float: left;font-size: 2em;}
-.slideshow-control-next{float: right;font-size: 2em;}
+.slideshow-control-prev{float: left;font-size: 2em; color: #eee; transition: color 0.3s;}
+.slideshow-control-next{float: right;font-size: 2em; transition: color 0.3s;}
 
 /*.societe{ height: 55% !important;}*/
 .name p{text-align: center; font-family: Century Gothic; font-weight: initial; font-size: 22px; color: #FFF; padding-top: 3.4%; letter-spacing: 6px; text-transform: uppercase;}

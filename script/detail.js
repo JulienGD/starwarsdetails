@@ -43,6 +43,7 @@ MatSlide.prototype.init = function(){
 	for(var i=0;i<prevArrows.length;i++){
 		prevArrows[i].addEventListener('click',this.prevSlide,false);
 	}
+
 }
 /*
 	nextSlide event 
@@ -51,12 +52,13 @@ MatSlide.prototype.init = function(){
 */
 MatSlide.prototype.nextSlide = function(){
 
-	//this context refers to clicked element's DOM !!!
+	//"this" context refers to clicked element's DOM !!!
 	var slideshow = this.parentElement.parentElement;
 	var slideNodes = slideshow.childNodes;
 	var currSlide = null;
 	var nextSlide = null;
 
+	//escape possible "\n" node
 	for ( var i = 0; i < slideNodes.length; i++){
 		if ( slideNodes[i].nodeName == "DIV"){
 			if ( hasClass(slideNodes[i], "current")){
@@ -72,7 +74,12 @@ MatSlide.prototype.nextSlide = function(){
 		setTimeout(function(){
 			nextSlide.classname = "slide current";
 		}, 1200);
+		if ( !nextSlide.nextSibling){
+			this.style.color = "#eee"
+		}	
 	}
+
+	this.previousSibling.style.color = "inherit";
 }
 
 /*
@@ -82,13 +89,14 @@ MatSlide.prototype.nextSlide = function(){
 */
 MatSlide.prototype.prevSlide = function(){
 
-	//this context refers to clicked element's DOM !!!
+	//"this" context refers to clicked element's DOM !!!
 
 	var slideshow = this.parentElement.parentElement;
 	var slideNodes = slideshow.childNodes;
 	var currSlide = null;
 	var prevSlide = null;
 
+	//escape possible "\n" node
 	for ( var i = 0; i < slideNodes.length; i++){
 		if ( slideNodes[i].nodeName == "DIV"){
 			if ( hasClass(slideNodes[i], "current")){
@@ -103,9 +111,13 @@ MatSlide.prototype.prevSlide = function(){
 		setTimeout(function(){
 			currSlide.className = "slide";
 		}, 1200);
+		if ( prevSlide.previousSibling.previousSibling == undefined){
+			this.style.color = "#eee";
+		}
 		prevSlide.className += " current";	
 	}
 
+	this.nextSibling.style.color = "inherit"
 }
 
 /*
@@ -248,6 +260,7 @@ Society.prototype.init = function(){
 	newChart;
 	//#radar-language radar chart for number of languauges
 	ctx = document.getElementById("radar-languages").getContext("2d");
+	console.log(ctx);
 	chart = new Chart(ctx).Radar(radarLanguages());
 	//#pie-species pie chart for number of inhabiting species
 	ctx = document.getElementById("pie-species").getContext("2d");
@@ -421,6 +434,7 @@ var Home = function(metadata){
 							'</div>'+
 					'</div>'+
 					'<div class="slide">'+
+							'<h1>Société</h1>'+
 							'<div class="slide-inner">'+
 								'<canvas id="bar-inhabitants"></canvas>'+
 							'</div>'+
@@ -437,7 +451,7 @@ var Home = function(metadata){
 					'<div class="slideshow-controls">'+
 						'<div class="slideshow-control-prev">&#10094;</div>'+
 						'<div class="slideshow-control-next">&#10095;</div>'+
-					'</div>.'+
+					'</div>'+
 					'<div class="slide current">'+
 						'<h1>Physique</h1>'+
 						'<div class="slide-inner">'+
@@ -445,6 +459,7 @@ var Home = function(metadata){
 						'</div>'+
 					'</div>'+
 					'<div class="slide">'+
+							'<h1>Physique</h1>'+
 							'<div class="slide-inner">'+
 								'<canvas id="polar-diameter"></canvas>'+
 							'</div>'+
@@ -493,7 +508,7 @@ Home.prototype.init = function(){
 			movies.init();
 		}, 700);
 	});
-	//document.getElementById("button-movies")
+
 	//draw charts
 	ctx = document.getElementById("pie-species").getContext("2d");
 	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
@@ -504,32 +519,17 @@ Home.prototype.init = function(){
 	ctx = document.getElementById("polar-distance").getContext("2d");
 	chart = new Chart(ctx).PolarArea(polarDistance(self.metadata.name));
 
+	// ctx = document.getElementById("polar-diameter").getContext("2d");
+	// chart = new Chart(ctx).PolarArea(polarDiameter(self.metadata.name));	
+
 	ctx = document.getElementById("polar-diameter").getContext("2d");
-	chart = new Chart(ctx).PolarArea(polarDiameter(self.metadata.name));
+	chart = new Chart(ctx).Radial(polarDiameter(self.metadata.name));
+
+
 
 	//setup slideshows
 	var mSlide = new MatSlide;
 	mSlide.init();
-}
-
-function initThreeJs(){
-
-	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-	var renderer = new THREE.WebGLRenderer();
-	renderer.setSize( window.innerWidth/2, window.innerHeight );
-	document.getElementById("container").appendChild( renderer.domElement );
-
-	camera.position.z = 5;
-
-	function render() {
-		requestAnimationFrame( render );
-		cube.rotation.x += 0.01;
-		cube.rotation.y += 0.01;
-		renderer.render( scene, camera );
-	}
-	render();
 }
 
 function getPlanetFromUrl(){
