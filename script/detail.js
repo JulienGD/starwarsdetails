@@ -183,19 +183,18 @@ Society.prototype.init = function(){
 	// 	opacity : 0
 	// });
 
-	$(".infopanel div").fadeIn("fast", function(){
-		var ctx,
-			newChart;
-		//#radar-language radar chart for number of languauges
-		ctx = document.getElementById("radar-languages").getContext("2d");
-		chart = new Chart(ctx).Radar(radarLanguages());
-		//#pie-species pie chart for number of inhabiting species
-		ctx = document.getElementById("pie-species").getContext("2d");
-		chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
-		// //#bar-inhabitants radar chart for number of inhabitants
-		ctx = document.getElementById("bar-inhabitants").getContext("2d");
-		chart = new Chart(ctx).Bar(barInhabitants);
-	})
+	$(".infopanel > div").fadeIn("fast", function(){});
+	var ctx,
+	newChart;
+	//#radar-language radar chart for number of languauges
+	ctx = document.getElementById("radar-languages").getContext("2d");
+	chart = new Chart(ctx).Radar(radarLanguages());
+	//#pie-species pie chart for number of inhabiting species
+	ctx = document.getElementById("pie-species").getContext("2d");
+	chart = new Chart(ctx).Pie(pieSpecies(self.metadata.name));	
+	// //#bar-inhabitants radar chart for number of inhabitants
+	ctx = document.getElementById("bar-inhabitants").getContext("2d");
+	chart = new Chart(ctx).Bar(barInhabitants);
 }
 
 // 2 - Planet's data
