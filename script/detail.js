@@ -247,7 +247,7 @@ var Home = function(metadata){
 		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
-				'<div class="floating-wrapper-plus">'+
+				'<div class="floating-wrapper-plus" id="button-society">'+
 					'<div class="floating-wrapper">'+
 						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-society">+</a>' +
 					'</div>' +
@@ -272,7 +272,7 @@ var Home = function(metadata){
 				'</div>'+
 			'</div>'+
 			'<div class="infopanel-half-vt">'+
-				'<div class="floating-wrapper-plus">'+
+				'<div class="floating-wrapper-plus" id="button-physics">'+
 					'<div class="floating-wrapper">'+
 						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-insights">+</a>' +
 					'</div>' +
@@ -298,7 +298,7 @@ var Home = function(metadata){
 		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-tt"> '+
-				'<div class="floating-wrapper-plus">'+
+				'<div class="floating-wrapper-plus" id="button-movies">'+
 					'<div class="floating-wrapper">'+
 						'<a href="javascript:void(0)" class="button floating danger ripple" id="button-movies">+</a>' +
 					'</div>' +
@@ -319,14 +319,18 @@ Home.prototype.init = function(){
 		data;
 
 	//set up event listeners for buttons
-	// document.getElementById("button-society").addEventListener('click', function(){
-	// 	var society = new Society(self.metadata);
-	// 	society.init();
-	// });
-	// document.getElementById("button-insights").addEventListener('click', function(){
-	// 	var insights = new Insights(self.metadata);
-	// 	insights.init();
-	// });
+	document.getElementById("button-society").addEventListener('click', function(){
+		setTimeout(function(){
+			var society = new Society(self.metadata);
+			society.init();
+		}, 700);
+	});
+	document.getElementById("button-insights").addEventListener('click', function(){
+		setTimeout(function(){
+			var insights = new Insights(self.metadata);
+			insights.init();
+		}, 700);
+	});
 	//document.getElementById("button-movies")
 	//draw charts
 	ctx = document.getElementById("pie-species").getContext("2d");
@@ -355,7 +359,6 @@ $.fn.materialripple = function(options) {
 	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
 
 	$(this).bind('click', function(e){
-		debugger;
 		$(this).find('.'+defaults.rippleClass).removeClass('animated');
 		var mouseX = e.clientX;
 		var mouseY = e.clientY;
@@ -368,15 +371,7 @@ $.fn.materialripple = function(options) {
 		var rippleY = e.clientY - $(this).offset().top - d/2;
 
 		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
-		$('.floating-wrapper').addClass('animated');
-		setTimeout(function(){
-			$('.infopanel > div').fadeOut("fast", function(){});
-			var metadata = getMetadata();
-				var society = new Society(metadata);
-				society.init();
-		}, 650);
-			
-		
+		$(this).parent().addClass('animated');
 	});
 }
 
