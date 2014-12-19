@@ -240,8 +240,9 @@ Society.prototype.init = function(){
 	var self = this;
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
 	document.querySelector(".exit-button").addEventListener('click', function(){
-		init();
-	})
+		$('.infopanel > div').fadeOut("normal");
+		setTimeout(function(){init()}, 600);	
+	});
 	// $(".infopanel div").css({
 	// 	opacity : 0
 	// });
@@ -306,7 +307,8 @@ Insights.prototype.init = function(){
 	var self = this;
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
 	document.querySelector(".exit-button").addEventListener('click', function(){
-		init();
+		$('.infopanel > div').fadeOut("normal");
+		setTimeout(function(){init()}, 600);
 	})
 	var ctx,
 		newChart;
