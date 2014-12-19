@@ -23,8 +23,8 @@ box-shadow: h-pos v-pos (blur) (spread) (color) (inset);
 .infopanel canvas {width: 100% !important; height: auto !important; /*margin-top: 30%; margin-bottom: 30%;*/}
 #bar-inhabitants{width: 49% !important; margin-left: 25.5%;margin-right: 25.5%;}
 .text-society{padding: 30px;}
-.name .exit-button{position: relative; font-size: 20px;float:left;top: 20px; left: 15px; color: #fff;}
-.name .exit-button:hover{cursor: pointer;}
+.name .exit-button{position: relative; font-size: 20px;float:right;top: 20px; margin-right: 3.6%; color: #fff;transition:transform 0.66s ease-out;}
+.name .exit-button:hover{cursor: pointer; transform: rotateZ(90deg);}
 #canvas-holder{width:70%;}
 
 .infopanel-half-vt{margin-top: 2%; margin-left: 3.6%;}

@@ -1,18 +1,36 @@
 /*
-	init slideshow listeners
+
+
+
+
+
+
+
+
+
+			DETAIL.JS
+
+	1 : Slideshow constructor (homemade vanilla JS slideshow)
+	2 : Material design like button animation
+	3 : Template Engine ( thanks http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line)
+	4 : Templates
+	5 : Init functions
+
+
 */
 
-
-
+/*
+	Slideshow class
+*/
 var MatSlide = function(){
 };
 
+/*
+	init()
+		attach navigation events to arrows
+
+*/
 MatSlide.prototype.init = function(){
-	//click events for growing slides
-	var slides = document.querySelectorAll(".slide");
-	for ( var i = 0; i < slides.length; i++){
-		slides[i].addEventListener("click", this.grow, false);
-	}
 
 	//next slide event 
 	var nextArrows = document.querySelectorAll('.slideshow-control-next');
@@ -27,12 +45,13 @@ MatSlide.prototype.init = function(){
 	}
 }
 /*
-	listener next
+	nextSlide event 
+		get nextSibling of clicked element
+		swap classes
 */
 MatSlide.prototype.nextSlide = function(){
 
 	//this context refers to clicked element's DOM !!!
-
 	var slideshow = this.parentElement.parentElement;
 	var slideNodes = slideshow.childNodes;
 	var currSlide = null;
@@ -57,7 +76,9 @@ MatSlide.prototype.nextSlide = function(){
 }
 
 /*
-	listener prev
+	prevSlide event 
+		get prevSibling of clicked element
+		swap classes
 */
 MatSlide.prototype.prevSlide = function(){
 
@@ -84,26 +105,52 @@ MatSlide.prototype.prevSlide = function(){
 		}, 1200);
 		prevSlide.className += " current";	
 	}
+
+	//hide or show navigation arrow
+	if ( !currSlide.previousSibling.previousSibling || !prevSlide.previousSibling.previousSibling){
+		prevSlide.previousSibling.firstChild.style.display = "none";
+	}
 }
 
 /*
-	grows slides bigger
+	MATERIAL DESIGN STYLE BUTTON ANIMATION
 */
 
-MatSlide.prototype.grow = function(){
-	this.style.position = "absolute";
+$.fn.materialripple = function(options) {
+	var defaults = {
+		rippleClass: 'ripple-wrapper'
+	}
+	$.extend(defaults, options);
+	$(this).append('<span class="'+defaults.rippleClass+'"></span>');
+	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
+
+	$(this).bind('click', function(e){
+		$(this).find('.'+defaults.rippleClass).removeClass('animated');
+		var mouseX = e.clientX;
+		var mouseY = e.clientY;
+
+		elementWidth = $(this).outerWidth();
+		elementHeight = $(this).outerHeight();
+		d = Math.max(elementWidth, elementHeight);
+		$(this).find('.'+defaults.rippleClass).css({'width': d, 'height': d});
+		var rippleX = e.clientX - $(this).offset().left - d/2;
+		var rippleY = e.clientY - $(this).offset().top - d/2;
+
+		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
+		$(this).parent().addClass('animated');
+	});
 }
 
+$(function(){
+	$('.ripple').materialripple();
+	});
 
+/*
+	TEMPLATE ENGINE
+*/
 function hasClass(element, cls) {
     return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 }
-
-	window.onload = function(){
-		// tein
-		var mSlide = new MatSlide;
-		mSlide.init();
-	};
 
 var TemplateEngine = function(html, options) {
     var re = /<%([^%>]+)?%>/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = 'var r=[];\n', cursor = 0;
@@ -123,6 +170,21 @@ var TemplateEngine = function(html, options) {
 /*
 ======================
 						TEMPLATES
+				1 : Society
+				2 : Insights / Physics 
+				3 : Movies
+
+	Each template is organized like this :
+
+	class Template
+		this.metadata = data for a specific Planet
+		this.template = DOM template to be interpreted by TemplateEngine
+
+		prototype.init = 
+			load template in DOM;
+			start animations;
+			attach event listeners;
+			draw charts
 ======================
 */
 // 1 - Society
@@ -147,7 +209,6 @@ var Society = function(metadata){
 				'</div>'+
 			'</div>'+
 		'</div>'+
-
 		'<div class="infopanel-third-hz place">'+
 			'<div class="infopanel-half-vt societe">'+
 				'<div class="infopanel-twothird-hz" id="info-">'+
@@ -178,7 +239,9 @@ var Society = function(metadata){
 Society.prototype.init = function(){
 	var self = this;
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
-
+	document.querySelector(".exit-button").addEventListener('click', function(){
+		init();
+	})
 	// $(".infopanel div").css({
 	// 	opacity : 0
 	// });
@@ -203,42 +266,50 @@ var Insights = function(metadata){
 	this.metadata = metadata;
 	this.template = 
 		'<div class="infopanel-third-hz">'+
-		'<div class="header">'+
-			'<div class="exit-button"></div>'+
-			'<h1><%this.name%></h1>'+
-		'</div>'+
-		'<div class="text">'+
-			'<%this.geography%>'+
-			'</br>'+
-			'<h3><%this.capital%></h3>'+
-		'</div>'+
-	'</div>'+
-	'<div class="infopanel-twothird-hz">'+
-		'<div class="infopanel-half-vt">'+
-			'<div class="infopanel-half-hz" id="info-">'+
-				'<canvas id="radar-satellites"></canvas>'+
+			'<div class="header">'+
+				'<div class="name">'+
+					'<div class="exit-button">&#9587;</div>'+
+					'<p>La planète</p>'+
+					'</br>'+
+				'</div>'+
 			'</div>'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="bars-surface"></canvas>'+
+			'<div class="infopanel-third-hz-society">'+
+				'<div class="infopanel-half-tt"> '+
+					'<div class="text-society">'+
+						'<%this.abstract%>'+
+						'</br>'+
+					'</div>'+
+				'</div>'+
 			'</div>'+
 		'</div>'+
-		'<div class="infopanel-half-vt">'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="polar-distance"></canvas>'+
+		'<div class="infopanel-twothird-hz">'+
+			'<div class="infopanel-half-vt">'+
+				'<div class="infopanel-half-hz" id="info-">'+
+					'<canvas id="radar-satellites"></canvas>'+
+				'</div>'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="bars-surface"></canvas>'+
+				'</div>'+
 			'</div>'+
-			'<div class="infopanel-half-hz">'+
-				'<canvas id="polar-diameter"></canvas>'+
-			'</div>'+			
-		'</div>'+
-	'</div>';
+			'<div class="infopanel-half-vt">'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="polar-distance"></canvas>'+
+				'</div>'+
+				'<div class="infopanel-half-hz">'+
+					'<canvas id="polar-diameter"></canvas>'+
+				'</div>'+			
+			'</div>'+
+		'</div>';
 }
 
 Insights.prototype.init = function(){
 	var self = this;
 	document.querySelector(".infopanel").innerHTML = TemplateEngine(self.template, self.metadata);
+	document.querySelector(".exit-button").addEventListener('click', function(){
+		init();
+	})
 	var ctx,
-		newChart,
-		data;
+		newChart;
 	//'<canvas id="radar-satellites"></canvas>'+
 	ctx = document.getElementById("radar-satellites").getContext("2d");
 	chart = new Chart(ctx).Radar(radarSatellites);
@@ -256,9 +327,9 @@ Insights.prototype.init = function(){
 var Home = function(metadata){
 	this.metadata = metadata;
 	this.template = 
-	'<div class="name">'+
-		'<p><%this.name%></p>'+
-	'</div>'+
+		'<div class="name">'+
+			'<p><%this.name%></p>'+
+		'</div>'+
 		'<div class="infopanel-half-hz">'+
 			'<div class="infopanel-half-vt">'+
 				'<div class="floating-wrapper-plus" id="button-society">'+
@@ -364,35 +435,6 @@ Home.prototype.init = function(){
 	mSlide.init();
 }
 
-$.fn.materialripple = function(options) {
-	var defaults = {
-		rippleClass: 'ripple-wrapper'
-	}
-	$.extend(defaults, options);
-	$(this).append('<span class="'+defaults.rippleClass+'"></span>');
-	$(this).addClass('has-ripple').css({'position': 'relative', 'overflow': 'hidden'});
-
-	$(this).bind('click', function(e){
-		$(this).find('.'+defaults.rippleClass).removeClass('animated');
-		var mouseX = e.clientX;
-		var mouseY = e.clientY;
-
-		elementWidth = $(this).outerWidth();
-		elementHeight = $(this).outerHeight();
-		d = Math.max(elementWidth, elementHeight);
-		$(this).find('.'+defaults.rippleClass).css({'width': d, 'height': d});
-		var rippleX = e.clientX - $(this).offset().left - d/2;
-		var rippleY = e.clientY - $(this).offset().top - d/2;
-
-		$(this).find('.'+defaults.rippleClass).css('top', rippleY+'px').css('left', rippleX+'px').addClass('animated');
-		$(this).parent().addClass('animated');
-	});
-}
-
-$(function(){
-	$('.ripple').materialripple();
-	});
-
 function initThreeJs(){
 
 	var scene = new THREE.Scene();
@@ -413,9 +455,17 @@ function initThreeJs(){
 	render();
 }
 
+//initialize 
+//load parameter "planet" from URL, and get linked data
 function init(){
-	var url = document.URL,
-		planete = url.slice(url.indexOf("&")+1, url.length),
+	var url = document.URL;
+	console.log("\''\''")
+	//if no params : reload page with a Param (and I love Naboo)
+	if (url.indexOf('&') < 0){
+		window.location.href = "./detail.html?&Naboo";
+	}
+
+	var planete = url.slice(url.indexOf("&")+1, url.length),
 		metadata;
 
 	for (var i = 0; i < planetsMetadata.length; i++){
@@ -425,60 +475,7 @@ function init(){
 	var home = new Home(metadata);
 	home.init();
 	
-
 	//initThreeJs();
 }
 
 init();
-
-
-/*
-	transition :
-		créer une div au même endroit
-		lui appliquer la classe
-			setTimeout
-				repeat
-*/
-
-// function materialTransition(el){
-// 	var self = el;
-// 	var buttonTemplate = 
-// 					'<div class="floating-wrapper-plus" id="growing-button">'+
-// 						'<div class="floating-wrapper">'+
-// 							'<a href="javascript:void(0)" class="button floating danger ripple" id="button-movies">+</a>' +
-// 						'</div>' +
-// 					'</div>';
-
-// 	document.querySelector(".infopanel").innerHTML += TemplateEngine(buttonTemplate);
-// 	var button = document.getElementById("growing-button");
-// 	button.style.position = "absolute";
-// 	button.style.left = self.offsetLeft;
-// 	button.style.top = self.offsetTop;
-// 	button.style.zIndex = 30;
-// 	button.style.transition= "all 1s ease-in-out";
-// 	button.style.transform= "scale(100)";
-// 	debugger;
-// 	setTimeout(function(){
-// 		document.querySelector(".infopanel").innerHTML += TemplateEngine(buttonTemplate);
-// 		var button = document.getElementById("growing-button");
-// 		button.style.position = "absolute";
-// 		button.firstChild.firstChild.backgroundColor = "#fff";
-// 		button.style.left = self.offsetLeft;
-// 		button.style.top = self.offsetTop;
-// 		button.style.zIndex = 30;
-// 		button.style.transition= "all .2s ease-in-out";
-// 		button.style.transform= "scale(100)";
-// 	}, 250);
-// 	setTimeout(function(){
-// 		var society = new Society(self.metadata);
-// 		society.init();
-// 	}, 500);
-// 	console.log(el);
-// }
-
-
-
-
-
-
-
